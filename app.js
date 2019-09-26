@@ -56,7 +56,7 @@ class Bit {
 }
 
 let Game = {
-	baseFrameRate: 10,
+	baseFrameRate: 8,
 	ticks: 0,
 	lastMovedTick: 0,
 	snek: {},
