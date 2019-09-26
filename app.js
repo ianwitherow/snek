@@ -56,6 +56,7 @@ class Bit {
 }
 
 let Game = {
+	baseFrameRate: 10,
 	ticks: 0,
 	lastMovedTick: 0,
 	snek: {
@@ -269,12 +270,14 @@ function drawGrid() {
 
 function drawApple() {
 	// Make the apple a little smaller than our regular bitWidth
-	const widthOffset = 4; // We'll go 4px smaller
-	ctx.strokeStyle = "#000000";
-	ctx.fillStyle = "white";
+	const appleWidth = bitWidth / 3.5;
+	ctx.strokeStyle = "#900303";
+	ctx.fillStyle = "#e80505";
 	ctx.strokeWidth = "1";
-	ctx.fillRect(Game.apple.x + widthOffset, Game.apple.y + widthOffset, bitWidth - (widthOffset * 2), bitWidth - (widthOffset * 2));
-	ctx.strokeRect(Game.apple.x + widthOffset, Game.apple.y + widthOffset, bitWidth - (widthOffset * 2), bitWidth - (widthOffset * 2));
+	ctx.beginPath();
+	ctx.arc(Game.apple.x + (bitWidth / 2), Game.apple.y + (bitWidth / 2), appleWidth, 0, 2 * Math.PI);
+	ctx.fill();
+	ctx.stroke();
 }
 
 function render() {
@@ -287,7 +290,7 @@ function render() {
 		drawApple();
 		Game.ticks++;
 		requestAnimationFrame(render);
-	}, 1000 / (10 + ( Game.snek.applesEaten / 1.5 )));
+	}, 1000 / (Game.baseFrameRate + ( Game.snek.applesEaten / 1.5 )));
 }
 
 render();
