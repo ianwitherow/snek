@@ -18,6 +18,18 @@
 				color: #fff;
 				font-size: 26px;
 			}
+			#game-over {
+				margin-top: 20px;
+			}
+			#new-game {
+				background-color: #fff;
+				border: 2px solid #214c6b;
+				padding: 10px;
+				border-radius: 3px;
+				font-weight: 700;
+				color: #297edc;
+				font-size: 18px;
+			}
 		</style>
 	</head>
 	<body>
@@ -29,6 +41,11 @@
 			<div id="score">
 				Score: 0
 			</div>
+		</div>
+		<div id="game-over" hidden>
+			<button id="new-game" onClick="initSnek(500)">
+				New Game
+			</button>
 		</div>
 		<script src="./app.js"></script>
 	</body>

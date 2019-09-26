@@ -59,27 +59,39 @@ let Game = {
 	baseFrameRate: 10,
 	ticks: 0,
 	lastMovedTick: 0,
-	snek: {
-		direction: "right",
-		dead: false,
-		score: 0,
-		applesEaten: 0,
-		bits: [
-			new Bit({
-				x0: 1,
-				y0: 0,
-				x: 120,
-				y: 100
-			})
-		]
-	},
+	snek: {},
 	apple: {
 		x: 160,
 		y: 100
 	}
 }
 
+function initSnek(timeout) {
+	timeout = timeout || 0;
+	document.getElementById('game-over').hidden = true;
+	document.getElementById("score").innerHTML = "Score: 0";
 
+	setTimeout(function() {
+		Game.snek = {
+			direction: "right",
+			dead: false,
+			score: 0,
+			applesEaten: 0,
+			bits: [
+				new Bit({
+					x0: 1,
+					y0: 0,
+					x: 120,
+					y: 100
+				})
+			]
+		};
+		// Add some bits for our snek
+		for (let i = 0; i < 4; i++) {
+			Game.snek.bits.push(new Bit(Game.snek.bits[i]));
+		}
+	}, timeout);
+}
 
 
 document.addEventListener("keydown", (e) => {
@@ -152,11 +164,6 @@ document.addEventListener("keydown", (e) => {
 
 });
 
-// Add some bits for our snek
-for (let i = 0; i < 4; i++) {
-	Game.snek.bits.push(new Bit(Game.snek.bits[i]));
-}
-
 function updateSnek() {
 	for (let i = Game.snek.bits.length - 1; i >= 0; i--) {
 		let parent = null;
@@ -226,7 +233,7 @@ function gameOver() {
 		localStorage.setItem("high-score", Game.snek.score);
 		document.getElementById("high-score").innerHTML = "High Score: " + Game.snek.score;
 	}
-
+	document.getElementById('game-over').hidden = false;
 }
 
 
@@ -293,5 +300,6 @@ function render() {
 	}, 1000 / (Game.baseFrameRate + ( Game.snek.applesEaten / 1.5 )));
 }
 
+initSnek();
 render();
 
