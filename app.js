@@ -1,7 +1,7 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext('2d');
 
-const bitWidth = 20; // The height and width of our snake bits
+const bitWidth = 14; // The height and width of our snake bits
 let queue = null;    // We'll use this to hold onto the next move if they make two within the same frame
 
 // Load high score if it's set
@@ -61,8 +61,8 @@ let Game = {
 	lastMovedTick: 0,
 	snek: {},
 	apple: {
-		x: 160,
-		y: 100
+		x: 168,
+		y: 98
 	}
 }
 
@@ -81,8 +81,8 @@ function initSnek(timeout) {
 				new Bit({
 					x0: 1,
 					y0: 0,
-					x: 120,
-					y: 100
+					x: 112,
+					y: 98
 				})
 			]
 		};
