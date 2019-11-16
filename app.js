@@ -56,6 +56,7 @@ class Bit {
 }
 
 let Game = {
+	paused: false,
 	baseFrameRate: 8,
 	ticks: 0,
 	lastMovedTick: 0,
@@ -145,6 +146,15 @@ document.addEventListener("keydown", (e) => {
 				Game.snek.direction = "right";
 			}
 		break;
+		case 80: // p
+		case 32: // space
+			e.preventDefault();
+			Game.paused = !Game.paused;
+			break;
+	}
+
+	if (Game.paused) {
+		return;
 	}
 
 	if (!move) {
@@ -154,6 +164,7 @@ document.addEventListener("keydown", (e) => {
 	if (enqueueMove) {
 		queue = move;
 	} else {
+		e.preventDefault();
 		move();
 		// If we moved, update lastMovedTick
 		if (direction !== Game.snek.direction) {
@@ -288,7 +299,8 @@ function drawApple() {
 
 function render() {
 	setTimeout(() => {
-		if (!Game.snek.dead) {
+		console.log("moop");
+		if (!Game.snek.dead && !Game.paused) {
 			updateSnek();
 		}
 		draw();
