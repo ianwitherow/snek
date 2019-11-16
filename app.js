@@ -76,7 +76,6 @@ function initSnek(timeout) {
 			direction: "right",
 			dead: false,
 			score: 0,
-			applesEaten: 0,
 			bits: [
 				new Bit({
 					x0: 1,
@@ -297,7 +296,7 @@ function render() {
 		drawApple();
 		Game.ticks++;
 		requestAnimationFrame(render);
-	}, 1000 / (Game.baseFrameRate + ( Game.snek.applesEaten / 1.5 )));
+	}, 1000 / (Game.baseFrameRate + ( Game.snek.score / 7 )));
 }
 
 initSnek();
