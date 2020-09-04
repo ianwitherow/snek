@@ -62,8 +62,8 @@ let Game = {
 	lastMovedTick: 0,
 	snek: {},
 	apple: {
-		x: 168,
-		y: 98
+		x: 0,
+		y: 0
 	}
 }
 
@@ -90,6 +90,8 @@ function initSnek(timeout) {
 		for (let i = 0; i < 4; i++) {
 			Game.snek.bits.push(new Bit(Game.snek.bits[i]));
 		}
+		// Spawn the first apple
+		spawnApple();
 	}, timeout);
 }
 
