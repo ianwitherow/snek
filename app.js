@@ -10,6 +10,7 @@ if (localStorage.getItem("high-score")) {
 }
 
 class Bit {
+	// TODO: Bit relies on bitWidth; move property into class or inject in the constructor
 	constructor(parent) {
 		this.x0 = parent.x0;
 		this.y0 = parent.y0;
@@ -190,7 +191,6 @@ function updateSnek() {
 }
 
 function eatApple() {
-	console.log("nom!");
 	Game.snek.score++;
 	Game.snek.bits.push(new Bit(Game.snek.bits[Game.snek.bits.length - 1]));
 	spawnApple();
@@ -211,13 +211,10 @@ function spawnApple() {
 		// New apple
 		spawnApple();
 	}
-	console.log(Game.apple);
 }
 
 function gameOver() {
 	Game.snek.dead = true;
-	console.log("Snek dead!");
-	console.log("Score: ", Game.snek.score);
 	let currentHighScore = localStorage.getItem("high-score") || 0;
 	if (Game.snek.score > currentHighScore) {
 		localStorage.setItem("high-score", Game.snek.score);
