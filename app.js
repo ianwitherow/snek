@@ -280,7 +280,6 @@ function drawApple() {
 
 function render() {
 	setTimeout(() => {
-		console.log("moop");
 		if (!Game.snek.dead && !Game.paused) {
 			updateSnek();
 		}
