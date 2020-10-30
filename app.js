@@ -14,39 +14,17 @@ class Bit {
 		this.x0 = parent.x0;
 		this.y0 = parent.y0;
 
-		this.y = parent.y;
 		this.x = parent.x;
+		this.y = parent.y;
 
-
-		if (this.x0 > 0) {
-			this.x -= bitWidth;
-		}
-		if (this.x0 < 0) {
-			this.x += bitWidth;
-		}
-
-		if (this.y0 > 0) {
-			this.y -= bitWidth;
-		}
-		if (this.y0 < 0) {
-			this.y += bitWidth;
-		}
+		this.x -= (bitWidth * this.x0);
+		this.y -= (bitWidth * this.y0);
 	}
 
 	update(parent) {
 
-		if (this.x0 > 0) {
-			this.x += bitWidth;
-		}
-		if (this.x0 < 0) {
-			this.x -= bitWidth;
-		}
-		if (this.y0 > 0) {
-			this.y += bitWidth;
-		}
-		if (this.y0 < 0) {
-			this.y -= bitWidth;
-		}
+		this.x += bitWidth * this.x0;
+		this.y += bitWidth * this.y0;
 
 		if (parent) {
 			this.x0 = parent.x0;
